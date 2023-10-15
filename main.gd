@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var fps: int = 30
+@export var fps: int = 16
 @export var frame_width: int = 240
 @export var frame_height: int = 160
 @export var frames_per_row: int = 10

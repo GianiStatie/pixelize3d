@@ -1,7 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://cqc8pk5ki4k1a"]
+[gd_scene load_steps=7 format=3 uid="uid://cqc8pk5ki4k1a"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_q80vk"]
 [ext_resource type="PackedScene" uid="uid://43nil7vt2bag" path="res://assets/goat.tscn" id="2_y44qn"]
+[ext_resource type="Shader" path="res://color-limit.gdshader" id="3_hjfed"]
+[ext_resource type="Texture2D" uid="uid://bb3pejxv4cdvr" path="res://assets/pokemon-ruby-sapphire-exterior-1x.png" id="4_t2804"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rxqet"]
+shader = ExtResource("3_hjfed")
+shader_parameter/palette = ExtResource("4_t2804")
+
+[sub_resource type="Environment" id="Environment_ff3x8"]
+background_mode = 1
+background_color = Color(0, 1, 0.733333, 1)
+ambient_light_source = 1
+ambient_light_color = Color(1, 1, 1, 1)
+reflected_light_source = 1
 
 [node name="Control" type="Node3D"]
 script = ExtResource("1_q80vk")
@@ -52,5 +65,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 10)
 projection = 1
 size = 2.0
 near = 0.001
+
+[node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport"]
+material = SubResource("ShaderMaterial_rxqet")
+custom_minimum_size = Vector2(240, 160)
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ff3x8")
 
 [editable path="SubViewportContainer/SubViewport/Player"]
