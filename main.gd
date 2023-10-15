@@ -1,16 +1,20 @@
 extends Node3D
 
 @export var fps: int = 16
-@export var frame_width: int = 240
-@export var frame_height: int = 160
 @export var frames_per_row: int = 10
 
 @onready var viewport = $SubViewportContainer/SubViewport
 @onready var animation_player: AnimationPlayer = $SubViewportContainer/SubViewport/Player/AnimationPlayer
 
+var frame_width: int
+var frame_height: int
+
 func _ready():
-	var img: Image
+	var frame_size = viewport.size
+	frame_width = frame_size.x
+	frame_height = frame_size.y
 	
+	var img: Image
 	img = await get_all_animation_frames()
 	img.save_png('test.png')
 
