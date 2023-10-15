@@ -1,0 +1,33 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Pixelize3D"
+run/main_scene="res://control.tscn"
+config/features=PackedStringArray("4.1", "Forward Plus")
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=128
+window/size/viewport_height=128
+window/size/window_width_override=512
+window/size/window_height_override=512
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
+[filesystem]
+
+import/fbx/enabled=false
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0

@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqc8pk5ki4k1a"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_q80vk"]
+[ext_resource type="PackedScene" uid="uid://43nil7vt2bag" path="res://assets/goat.tscn" id="2_y44qn"]
+
+[node name="Control" type="Node3D"]
+script = ExtResource("1_q80vk")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(128, 128)
+render_target_update_mode = 4
+
+[node name="Player" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_y44qn")]
+transform = Transform3D(-5.24537e-10, 0, 0.012, 0, 0.012, 0, -0.012, 0, -5.24537e-10, 0, 0, 0)
+
+[node name="Skeleton3D" parent="SubViewportContainer/SubViewport/Player/Armature" index="0"]
+bones/0/position = Vector3(30.3615, -213.447, -1598.49)
+bones/0/rotation = Quaternion(-0.579229, 0.00682211, 0.119721, 0.806296)
+bones/1/rotation = Quaternion(0.0146347, 0.106658, -0.0882995, 0.990259)
+bones/2/rotation = Quaternion(0.0361794, 0.0363203, -0.0115468, 0.998618)
+bones/3/rotation = Quaternion(0.0365533, 0.0364889, -0.00901692, 0.998625)
+bones/4/rotation = Quaternion(0.0201974, -0.0155723, -0.0159356, 0.999548)
+bones/5/rotation = Quaternion(-0.112996, -0.102344, 0.0350844, 0.987687)
+bones/7/rotation = Quaternion(-0.662209, -0.350401, 0.496662, -0.438207)
+bones/8/rotation = Quaternion(0.3013, 0.472787, -0.220623, 0.798133)
+bones/9/rotation = Quaternion(0.0412932, 0.000226754, 0.507988, 0.860374)
+bones/10/rotation = Quaternion(0.0102149, -0.347258, -0.0263543, 0.937344)
+bones/15/rotation = Quaternion(0.655465, -0.355864, 0.460186, 0.481618)
+bones/16/rotation = Quaternion(0.353308, 0.204883, -0.29929, 0.862335)
+bones/17/rotation = Quaternion(0.0500359, -0.00051524, -0.760704, 0.647167)
+bones/18/rotation = Quaternion(-0.130603, 0.246811, -0.338806, 0.898464)
+bones/23/rotation = Quaternion(0.0691559, 0.738656, 0.66998, 0.0270445)
+bones/24/rotation = Quaternion(-0.775695, -0.0897496, 0.0449615, 0.623074)
+bones/25/rotation = Quaternion(0.266547, -0.0771704, 0.19022, 0.941707)
+bones/26/rotation = Quaternion(0.20661, 0.232984, -0.0672189, 0.947899)
+bones/28/rotation = Quaternion(0.117854, 0.192977, -0.968246, -0.106629)
+bones/29/rotation = Quaternion(-0.183418, -0.0119363, 0.0376791, 0.98224)
+bones/30/rotation = Quaternion(0.608659, 0.0453858, -0.0862933, 0.787418)
+bones/31/rotation = Quaternion(0.457941, -0.155009, 0.00997621, 0.875307)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(0.5, -0.75, 0.433013, 0, 0.5, 0.866025, -0.866025, -0.433013, 0.25, 0, 0, 0.857771)
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 10)
+projection = 1
+size = 2.0
+near = 0.001
+
+[editable path="SubViewportContainer/SubViewport/Player"]
