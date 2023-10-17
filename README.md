@@ -3,7 +3,7 @@ Transforming 3D asstets into sprite-sheets
 
 <img src="test.gif" alt="drawing" width="420"/>
 
-the image is more blurry here than in reality ¯\_(ツ)_/¯
+the image is more blurry here than in reality ¯\\_(ツ)_/¯
 
 ## Demo animations checklist
 - [x] Attack 1
