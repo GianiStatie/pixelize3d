@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cqc8pk5ki4k1a"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_q80vk"]
-[ext_resource type="PackedScene" uid="uid://bk6kchpbd5gk3" path="res://assets/player.tscn" id="2_y13nm"]
+[ext_resource type="PackedScene" path="res://assets/player.tscn" id="2_y13nm"]
 [ext_resource type="Shader" path="res://color-limit.gdshader" id="3_hjfed"]
 [ext_resource type="Texture2D" uid="uid://bb3pejxv4cdvr" path="res://assets/pokemon-ruby-sapphire-exterior-1x.png" id="4_t2804"]
 
