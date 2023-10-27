@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cqc8pk5ki4k1a"]
+[gd_scene load_steps=9 format=3 uid="uid://cqc8pk5ki4k1a"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_q80vk"]
 [ext_resource type="PackedScene" uid="uid://bk6kchpbd5gk3" path="res://assets/player.tscn" id="2_y13nm"]
@@ -20,6 +20,9 @@ reflected_light_source = 1
 default_font_size = 8
 Button/constants/h_separation = 2
 Button/font_sizes/font_size = 10
+
+[sub_resource type="Theme" id="Theme_80hxc"]
+CheckButton/font_sizes/font_size = 8
 
 [node name="Control" type="Node3D"]
 script = ExtResource("1_q80vk")
@@ -67,4 +70,13 @@ theme = SubResource("Theme_drr1b")
 action_mode = 0
 text = "RunAnimation"
 
+[node name="BackgroundShader" type="CheckButton" parent="SubViewport"]
+offset_left = 1.0
+offset_top = 98.0
+offset_right = 123.0
+offset_bottom = 130.0
+theme = SubResource("Theme_80hxc")
+text = "BackgroundShader"
+
 [connection signal="toggled" from="SubViewport/RunAnnimation" to="." method="_on_run_annimation_toggled"]
+[connection signal="toggled" from="SubViewport/BackgroundShader" to="." method="_on_background_shader_toggled"]

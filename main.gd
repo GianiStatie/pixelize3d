@@ -64,3 +64,12 @@ func _on_run_annimation_toggled(button_pressed):
 	img = await get_all_animation_frames()
 	img.save_png('test.png')
 	
+
+func _on_background_shader_toggled(button_pressed):
+	var color_rect_node = $SubViewportContainer/SubViewport/ColorRect
+	if not button_pressed:
+		color_rect_node.show()
+	else:
+		color_rect_node.hide()
+
+
