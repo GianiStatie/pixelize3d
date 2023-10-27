@@ -9,14 +9,8 @@ extends Node3D
 var frame_width: int
 var frame_height: int
 
-func _ready():
-	var frame_size = viewport.size
-	frame_width = frame_size.x
-	frame_height = frame_size.y
-	
-	var img: Image
-	img = await get_all_animation_frames()
-	img.save_png('test.png')
+
+
 
 func get_all_animation_frames():
 	var img_buffer = []
@@ -28,7 +22,7 @@ func get_all_animation_frames():
 
 func capture_current_animation():
 	var image_buffer = []
-	var step = 1.0 / fps
+	var step = 0.1 / fps
 	var animation_length = animation_player.current_animation_length
 	var position = 0
 	
@@ -58,3 +52,15 @@ func capture_viewport():
 	var img = viewport.get_texture().get_image()
 	img.convert(Image.FORMAT_RGBA8)
 	return img
+
+func _on_run_annimation_toggled(button_pressed):
+	if not button_pressed:
+		return
+	var frame_size = viewport.size
+	frame_width = frame_size.x
+	frame_height = frame_size.y
+	
+	var img: Image
+	img = await get_all_animation_frames()
+	img.save_png('test.png')
+	
