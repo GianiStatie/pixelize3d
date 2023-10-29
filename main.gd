@@ -1,15 +1,19 @@
 extends Control
 
 @export var player_canvas_path: NodePath
-@onready var file_button = $Mount/MainWindow/MenuBar/FileButton
+@export var file_button_path: NodePath
 
 var player_canvas: SubViewportContainer
+var file_button: MenuButton
+
 var player_node: Node3D
 var color_shader: ColorRect
 
 
 func _ready():
 	player_canvas = get_node(player_canvas_path)
+	file_button = get_node(file_button_path)
+	
 	color_shader = player_canvas.get_node("Viewport/ColorShader")
 	player_node = player_canvas.get_node("Viewport/Player")
 	file_button.connect("model_load_triggered", _on_model_load_triggered)
