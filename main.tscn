@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://7cj62niu6y0m"]
+[gd_scene load_steps=5 format=3 uid="uid://7cj62niu6y0m"]
 
-[ext_resource type="PackedScene" uid="uid://drvvnirtyvu6g" path="res://PlayerScene.tscn" id="1_75o2e"]
 [ext_resource type="Script" path="res://main.gd" id="1_kmhnd"]
+[ext_resource type="PackedScene" uid="uid://cq03c8lxhl22t" path="res://UI/Menu/menu_button.tscn" id="2_1xgvu"]
+[ext_resource type="PackedScene" uid="uid://drvvnirtyvu6g" path="res://UI/Player/PlayerCanvas.tscn" id="3_fhkfp"]
 
 [sub_resource type="Theme" id="Theme_xym6h"]
 CheckButton/font_sizes/font_size = 8
@@ -16,6 +17,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_kmhnd")
+player_canvas_path = NodePath("Mount/MainWindow/HSplitContainer/VSplitContainer/TabContainer/2DPlayer/PlayerCanvas")
 
 [node name="Mount" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -31,10 +33,8 @@ layout_mode = 2
 [node name="MenuBar" type="HSplitContainer" parent="Mount/MainWindow"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Mount/MainWindow/MenuBar"]
+[node name="FileButton" parent="Mount/MainWindow/MenuBar" instance=ExtResource("2_1xgvu")]
 layout_mode = 2
-size_flags_vertical = 0
-text = "File edit  help"
 
 [node name="HSplitContainer" type="HSplitContainer" parent="Mount/MainWindow"]
 layout_mode = 2
@@ -55,9 +55,8 @@ drag_to_rearrange_enabled = true
 [node name="2DPlayer" type="CenterContainer" parent="Mount/MainWindow/HSplitContainer/VSplitContainer/TabContainer"]
 layout_mode = 2
 
-[node name="PlayerCanvas" parent="Mount/MainWindow/HSplitContainer/VSplitContainer/TabContainer/2DPlayer" instance=ExtResource("1_75o2e")]
+[node name="PlayerCanvas" parent="Mount/MainWindow/HSplitContainer/VSplitContainer/TabContainer/2DPlayer" instance=ExtResource("3_fhkfp")]
 layout_mode = 2
-auto_translate = false
 
 [node name="TabContainer2" type="TabContainer" parent="Mount/MainWindow/HSplitContainer/VSplitContainer"]
 custom_minimum_size = Vector2(600, 100)
