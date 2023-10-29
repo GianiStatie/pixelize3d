@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://cqc8pk5ki4k1a"]
+[gd_scene load_steps=7 format=3 uid="uid://cqc8pk5ki4k1a"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_q80vk"]
+[ext_resource type="Script" path="res://oldMain.gd" id="1_1asfg"]
 [ext_resource type="PackedScene" uid="uid://bk6kchpbd5gk3" path="res://assets/player.tscn" id="2_y13nm"]
 [ext_resource type="Shader" path="res://color-limit.gdshader" id="3_hjfed"]
 [ext_resource type="Texture2D" uid="uid://dn3yynaglcr7r" path="res://assets/pokemon-ruby-sapphire-exterior-1x.png" id="4_t2804"]
@@ -16,16 +16,8 @@ ambient_light_source = 1
 ambient_light_color = Color(1, 1, 1, 1)
 reflected_light_source = 1
 
-[sub_resource type="Theme" id="Theme_drr1b"]
-default_font_size = 8
-Button/constants/h_separation = 2
-Button/font_sizes/font_size = 10
-
-[sub_resource type="Theme" id="Theme_80hxc"]
-CheckButton/font_sizes/font_size = 8
-
-[node name="Control" type="Node3D"]
-script = ExtResource("1_q80vk")
+[node name="Control2" type="Node3D"]
+script = ExtResource("1_1asfg")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 offset_right = 64.0
@@ -59,24 +51,3 @@ offset_bottom = 40.0
 environment = SubResource("Environment_ff3x8")
 
 [node name="SubViewport" type="CanvasLayer" parent="."]
-
-[node name="RunAnnimation" type="CheckButton" parent="SubViewport"]
-offset_left = 1.0
-offset_top = 1.0
-offset_right = 91.0
-offset_bottom = 25.0
-auto_translate = false
-theme = SubResource("Theme_drr1b")
-action_mode = 0
-text = "RunAnimation"
-
-[node name="BackgroundShader" type="CheckButton" parent="SubViewport"]
-offset_left = 1.0
-offset_top = 98.0
-offset_right = 123.0
-offset_bottom = 130.0
-theme = SubResource("Theme_80hxc")
-text = "BackgroundShader"
-
-[connection signal="toggled" from="SubViewport/RunAnnimation" to="." method="_on_run_annimation_toggled"]
-[connection signal="toggled" from="SubViewport/BackgroundShader" to="." method="_on_background_shader_toggled"]
