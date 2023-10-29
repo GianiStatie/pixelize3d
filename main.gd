@@ -1,10 +1,10 @@
-extends Node3D
+extends Control
 
 @export var fps: int = 16
 @export var frames_per_row: int = 10
 
-@onready var viewport = $SubViewportContainer/SubViewport
-@onready var animation_player: AnimationPlayer = $SubViewportContainer/SubViewport/Player/AnimationPlayer
+@onready var viewport = $"Mount/MainWindow/HSplitContainer/VSplitContainer/TabContainer/2DPlayer/PlayerCanvas/SubViewport"
+@onready var animation_player: AnimationPlayer = $"Mount/MainWindow/HSplitContainer/VSplitContainer/TabContainer/2DPlayer/PlayerCanvas/SubViewport/Player/AnimationPlayer"
 
 var frame_width: int
 var frame_height: int
@@ -53,9 +53,19 @@ func capture_viewport():
 	img.convert(Image.FORMAT_RGBA8)
 	return img
 
-func _on_run_annimation_toggled(button_pressed):
+
+func _on_background_shader_toggled(button_pressed):
+	var color_rect_node =$"Mount/MainWindow/HSplitContainer/VSplitContainer/TabContainer/2DPlayer/PlayerCanvas/SubViewport/ColorRect"
+	
 	if not button_pressed:
-		return
+		color_rect_node.show()
+	else:
+		color_rect_node.hide()
+
+
+
+
+func _on_run_annimation_button_down():
 	var frame_size = viewport.size
 	frame_width = frame_size.x
 	frame_height = frame_size.y
@@ -63,13 +73,3 @@ func _on_run_annimation_toggled(button_pressed):
 	var img: Image
 	img = await get_all_animation_frames()
 	img.save_png('test.png')
-	
-
-func _on_background_shader_toggled(button_pressed):
-	var color_rect_node = $SubViewportContainer/SubViewport/ColorRect
-	if not button_pressed:
-		color_rect_node.show()
-	else:
-		color_rect_node.hide()
-
-

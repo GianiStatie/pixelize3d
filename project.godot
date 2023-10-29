@@ -11,16 +11,12 @@ config_version=5
 [application]
 
 config/name="Pixelize3D"
-run/main_scene="res://control.tscn"
+run/main_scene="res://main.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=128
-window/size/viewport_height=128
-window/size/window_width_override=512
-window/size/window_height_override=512
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 
