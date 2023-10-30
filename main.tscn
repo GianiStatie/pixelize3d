@@ -46,17 +46,15 @@ layout_mode = 2
 
 [node name="HSplitContainer" type="HSplitContainer" parent="Mount/MarginContainer/MainWindow"]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="VSplitContainer" type="VSplitContainer" parent="Mount/MarginContainer/MainWindow/HSplitContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
 
 [node name="PanelContainer" type="PanelContainer" parent="Mount/MarginContainer/MainWindow/HSplitContainer/VSplitContainer"]
-custom_minimum_size = Vector2(425, 425)
+custom_minimum_size = Vector2(600, 450)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 3
 
 [node name="PlayerCanvas" parent="Mount/MarginContainer/MainWindow/HSplitContainer/VSplitContainer/PanelContainer" instance=ExtResource("3_fhkfp")]
 custom_minimum_size = Vector2(400, 400)
