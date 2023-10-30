@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://drvvnirtyvu6g"]
+
+[ext_resource type="PackedScene" uid="uid://bk6kchpbd5gk3" path="res://Scenes/player.tscn" id="1_icvxo"]
+[ext_resource type="Script" path="res://UI/Player/PlayerCanvas.gd" id="1_wwi8m"]
+[ext_resource type="Shader" path="res://color-limit.gdshader" id="2_3qvnn"]
+[ext_resource type="Texture2D" uid="uid://bb3pejxv4cdvr" path="res://Assets/Palettes/pokemon-ruby-sapphire-exterior-1x.png" id="3_e8rlu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rxqet"]
+shader = ExtResource("2_3qvnn")
+shader_parameter/palette = ExtResource("3_e8rlu")
+
+[sub_resource type="Environment" id="Environment_ilbuc"]
+background_mode = 1
+background_color = Color(0, 0.960784, 0.819608, 1)
+ambient_light_source = 1
+ambient_light_color = Color(1, 1, 1, 1)
+reflected_light_source = 1
+
+[node name="PlayerCanvas" type="SubViewportContainer"]
+offset_right = 64.0
+offset_bottom = 64.0
+script = ExtResource("1_wwi8m")
+
+[node name="Viewport" type="SubViewport" parent="."]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Player" parent="Viewport" instance=ExtResource("1_icvxo")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 0, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Viewport"]
+transform = Transform3D(0.5, -0.75, 0.433013, 0, 0.5, 0.866025, -0.866025, -0.433013, 0.25, 0, 0, 0.857771)
+
+[node name="Camera3D" type="Camera3D" parent="Viewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 10)
+projection = 1
+size = 2.0
+near = 0.001
+
+[node name="ColorShader" type="ColorRect" parent="Viewport"]
+material = SubResource("ShaderMaterial_rxqet")
+custom_minimum_size = Vector2(600, 600)
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ilbuc")
