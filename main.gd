@@ -11,9 +11,7 @@ var color_shader: ColorRect
 
 var player_transform: Node3D
 var player_position: Node3D
-var line_edit_node_rotation
-var line_edit_node_position
-var line_edit_node_scale
+
 
 var scaleVector = Vector3()
 
@@ -60,58 +58,15 @@ func _on_model_load_triggered(path):
 
 
 
-func _on_text_edit_x_text_changed():
-	line_edit_node_rotation = $Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Rotation/LabelRotation/TextEditX
-	var rotation_input = line_edit_node_rotation.text.to_float()
-	player_transform.rotation_degrees.x = rotation_input
 
-func _on_text_edit_y_text_changed():
+func _on_position_transform_changed(_transform):
+	player_transform.position=_transform
+
+
+func _on_rotation_transform_changed(_transform):
 	
-	line_edit_node_rotation = $Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Rotation/LabelRotation/TextEditY
-	var rotation_input = line_edit_node_rotation.text.to_float()
-	player_transform.rotation_degrees.y = rotation_input
+	player_transform.rotation_degrees=_transform
 
 
-func _on_text_edit_z_text_changed():
-	line_edit_node_rotation = $Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Rotation/LabelRotation/TextEditZ
-	var rotation_input = line_edit_node_rotation.text.to_float()
-	player_transform.rotation_degrees.z = rotation_input
-
-
-func _on_scale_x_text_changed():
-	line_edit_node_scale = $Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Scale/LabelScale/ScaleX
-	var scale_input = line_edit_node_scale.text.to_float()
-	player_transform.scale.x = scale_input
-	scaleVector.x=scale_input
-
-
-func _on_scale_y_text_changed():
-	line_edit_node_scale = $Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Scale/LabelScale/ScaleY
-	var scale_input = line_edit_node_scale.text.to_float()
-	player_transform.scale.y = scale_input
-	scaleVector.y=scale_input
-
-
-func _on_scale_z_text_changed():
-	line_edit_node_scale = $Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Scale/LabelScale/ScaleZ
-	var scale_input = line_edit_node_scale.text.to_float()
-	player_transform.scale.x = scale_input
-	scaleVector.z = scale_input
-
-
-func _on_position_x_text_changed():
-	line_edit_node_position = $Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Position/LabelPosition/PositionX
-	var position_input = line_edit_node_position.text.to_float()
-	player_transform.position.x= position_input
-
-
-func _on_position_y_text_changed():
-	line_edit_node_position = $Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Position/LabelPosition/PositionY
-	var position_input = line_edit_node_position.text.to_float()
-	player_transform.position.y= position_input
-
-
-func _on_position_z_text_changed():
-	line_edit_node_position = $Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Position/LabelPosition/PositionZ
-	var position_input = line_edit_node_position.text.to_float()
-	player_transform.position.z= position_input
+func _on_scale_transform_changed(_transform):
+	player_transform.scale=_transform

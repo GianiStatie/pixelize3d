@@ -1,7 +1,10 @@
-[gd_scene format=3 uid="uid://c66khec1ryedj"]
+[gd_scene load_steps=2 format=3 uid="uid://c66khec1ryedj"]
+
+[ext_resource type="Script" path="res://InputTransform.gd" id="1_sty6c"]
 
 [node name="InputTransform" type="HBoxContainer"]
 custom_minimum_size = Vector2(60, 40)
+script = ExtResource("1_sty6c")
 
 [node name="LabelScale" type="Label" parent="."]
 custom_minimum_size = Vector2(450, 0)
@@ -58,3 +61,7 @@ offset_top = 2.0
 offset_right = 396.0
 offset_bottom = 28.0
 text = "Z"
+
+[connection signal="text_changed" from="LabelScale/ScaleX" to="." method="_on_scale_x_text_changed"]
+[connection signal="text_changed" from="LabelScale/ScaleY" to="." method="_on_scale_y_text_changed"]
+[connection signal="text_changed" from="LabelScale/ScaleZ" to="." method="_on_scale_z_text_changed"]
