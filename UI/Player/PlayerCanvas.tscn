@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bk6kchpbd5gk3" path="res://Scenes/player.tscn" id="1_icvxo"]
 [ext_resource type="Script" path="res://UI/Player/PlayerCanvas.gd" id="1_wwi8m"]
 [ext_resource type="Shader" path="res://color-limit.gdshader" id="2_3qvnn"]
-[ext_resource type="Texture2D" uid="uid://bb3pejxv4cdvr" path="res://Assets/Palettes/pokemon-ruby-sapphire-exterior-1x.png" id="3_e8rlu"]
+[ext_resource type="Texture2D" uid="uid://di5ltpdyqh51n" path="res://assets/Palettes/pokemon-ruby-sapphire-exterior-1x.png" id="3_e8rlu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rxqet"]
 shader = ExtResource("2_3qvnn")
