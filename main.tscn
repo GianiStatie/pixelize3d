@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://7cj62niu6y0m"]
+[gd_scene load_steps=6 format=3 uid="uid://7cj62niu6y0m"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_kmhnd"]
 [ext_resource type="PackedScene" uid="uid://cq03c8lxhl22t" path="res://UI/Menu/menu_button.tscn" id="2_1xgvu"]
 [ext_resource type="PackedScene" uid="uid://drvvnirtyvu6g" path="res://UI/Player/PlayerCanvas.tscn" id="3_fhkfp"]
+[ext_resource type="PackedScene" uid="uid://c66khec1ryedj" path="res://InputTransform.tscn" id="4_43vby"]
 
 [sub_resource type="Theme" id="Theme_xym6h"]
 CheckButton/font_sizes/font_size = 8
@@ -62,7 +63,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 stretch = true
-stretch_shrink = 3
+stretch_shrink = 2
 
 [node name="FrameSizeLabel" type="Label" parent="Mount/MarginContainer/MainWindow/HSplitContainer/VSplitContainer/PanelContainer"]
 layout_mode = 2
@@ -98,177 +99,17 @@ layout_mode = 2
 size_flags_horizontal = 0
 text = "Transform"
 
-[node name="PositionContainer" type="HBoxContainer" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(60, 40)
+[node name="Position" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer" instance=ExtResource("4_43vby")]
 layout_mode = 2
+transformName = "Position"
 
-[node name="Label" type="Label" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/PositionContainer"]
-custom_minimum_size = Vector2(450, 0)
+[node name="Rotation" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer" instance=ExtResource("4_43vby")]
 layout_mode = 2
-size_flags_horizontal = 0
-text = "Position"
+transformName = "Rotation"
 
-[node name="TextEditX" type="TextEdit" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/PositionContainer/Label"]
-custom_minimum_size = Vector2(80, 40)
+[node name="Scale" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer" instance=ExtResource("4_43vby")]
 layout_mode = 2
-offset_left = 112.0
-offset_top = -5.0
-offset_right = 192.0
-offset_bottom = 35.0
-
-[node name="TextEditY" type="TextEdit" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/PositionContainer/Label"]
-custom_minimum_size = Vector2(80, 40)
-layout_mode = 2
-offset_left = 244.0
-offset_top = -6.0
-offset_right = 324.0
-offset_bottom = 34.0
-
-[node name="TextEditZ" type="TextEdit" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/PositionContainer/Label"]
-custom_minimum_size = Vector2(80, 40)
-layout_mode = 2
-offset_left = 376.0
-offset_top = -5.0
-offset_right = 456.0
-offset_bottom = 35.0
-
-[node name="LabelX" type="Label" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/PositionContainer/Label"]
-layout_mode = 0
-offset_left = 94.0
-offset_top = 2.0
-offset_right = 134.0
-offset_bottom = 28.0
-text = "X"
-
-[node name="LabelX2" type="Label" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/PositionContainer/Label"]
-layout_mode = 0
-offset_left = 226.0
-offset_top = 2.0
-offset_right = 266.0
-offset_bottom = 28.0
-text = "Y"
-
-[node name="LabelX3" type="Label" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/PositionContainer/Label"]
-layout_mode = 0
-offset_left = 356.0
-offset_top = 2.0
-offset_right = 396.0
-offset_bottom = 28.0
-text = "Z"
-
-[node name="Rotation" type="HBoxContainer" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(60, 40)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Rotation"]
-custom_minimum_size = Vector2(450, 0)
-layout_mode = 2
-text = "Rotation"
-
-[node name="TextEditX" type="TextEdit" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Rotation/Label"]
-custom_minimum_size = Vector2(80, 40)
-layout_mode = 2
-offset_left = 112.0
-offset_top = -5.0
-offset_right = 192.0
-offset_bottom = 35.0
-
-[node name="TextEditY" type="TextEdit" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Rotation/Label"]
-custom_minimum_size = Vector2(80, 40)
-layout_mode = 2
-offset_left = 244.0
-offset_top = -6.0
-offset_right = 324.0
-offset_bottom = 34.0
-
-[node name="TextEditZ" type="TextEdit" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Rotation/Label"]
-custom_minimum_size = Vector2(80, 40)
-layout_mode = 2
-offset_left = 376.0
-offset_top = -5.0
-offset_right = 456.0
-offset_bottom = 35.0
-
-[node name="LabelX" type="Label" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Rotation/Label"]
-layout_mode = 0
-offset_left = 94.0
-offset_top = 2.0
-offset_right = 134.0
-offset_bottom = 28.0
-text = "X"
-
-[node name="LabelX2" type="Label" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Rotation/Label"]
-layout_mode = 0
-offset_left = 226.0
-offset_top = 2.0
-offset_right = 266.0
-offset_bottom = 28.0
-text = "Y"
-
-[node name="LabelX3" type="Label" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Rotation/Label"]
-layout_mode = 0
-offset_left = 356.0
-offset_top = 2.0
-offset_right = 396.0
-offset_bottom = 28.0
-text = "Z"
-
-[node name="Scale" type="HBoxContainer" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(60, 40)
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Scale"]
-custom_minimum_size = Vector2(450, 0)
-layout_mode = 2
-text = "Scale"
-
-[node name="TextEditX" type="TextEdit" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Scale/Label"]
-custom_minimum_size = Vector2(80, 40)
-layout_mode = 2
-offset_left = 112.0
-offset_top = -5.0
-offset_right = 192.0
-offset_bottom = 35.0
-
-[node name="TextEditY" type="TextEdit" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Scale/Label"]
-custom_minimum_size = Vector2(80, 40)
-layout_mode = 2
-offset_left = 244.0
-offset_top = -6.0
-offset_right = 324.0
-offset_bottom = 34.0
-
-[node name="TextEditZ" type="TextEdit" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Scale/Label"]
-custom_minimum_size = Vector2(80, 40)
-layout_mode = 2
-offset_left = 376.0
-offset_top = -5.0
-offset_right = 456.0
-offset_bottom = 35.0
-
-[node name="LabelX" type="Label" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Scale/Label"]
-layout_mode = 0
-offset_left = 94.0
-offset_top = 2.0
-offset_right = 134.0
-offset_bottom = 28.0
-text = "X"
-
-[node name="LabelX2" type="Label" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Scale/Label"]
-layout_mode = 0
-offset_left = 226.0
-offset_top = 2.0
-offset_right = 266.0
-offset_bottom = 28.0
-text = "Y"
-
-[node name="LabelX3" type="Label" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Scale/Label"]
-layout_mode = 0
-offset_left = 356.0
-offset_top = 2.0
-offset_right = 396.0
-offset_bottom = 28.0
-text = "Z"
+transformName = "Scale"
 
 [node name="HSeparator" type="HSeparator" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
@@ -311,5 +152,8 @@ auto_translate = false
 action_mode = 0
 text = "PlayAnimation"
 
+[connection signal="transformChanged" from="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Position" to="." method="_on_position_transform_changed"]
+[connection signal="transformChanged" from="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Rotation" to="." method="_on_rotation_transform_changed"]
+[connection signal="transformChanged" from="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Scale" to="." method="_on_scale_transform_changed"]
 [connection signal="toggled" from="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/ColorShader/BackgroundShader" to="." method="_on_background_shader_toggled"]
 [connection signal="button_down" from="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/PlayAnimation" to="." method="_on_run_annimation_button_down"]

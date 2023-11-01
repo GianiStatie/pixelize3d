@@ -1,0 +1,67 @@
+[gd_scene load_steps=2 format=3 uid="uid://c66khec1ryedj"]
+
+[ext_resource type="Script" path="res://InputTransform.gd" id="1_sty6c"]
+
+[node name="InputTransform" type="HBoxContainer"]
+custom_minimum_size = Vector2(60, 40)
+script = ExtResource("1_sty6c")
+
+[node name="LabelScale" type="Label" parent="."]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+text = "Scale"
+
+[node name="ScaleX" type="TextEdit" parent="LabelScale"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+offset_left = 112.0
+offset_top = -5.0
+offset_right = 192.0
+offset_bottom = 35.0
+placeholder_text = "0"
+
+[node name="ScaleY" type="TextEdit" parent="LabelScale"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+offset_left = 244.0
+offset_top = -6.0
+offset_right = 324.0
+offset_bottom = 34.0
+placeholder_text = "0"
+
+[node name="ScaleZ" type="TextEdit" parent="LabelScale"]
+custom_minimum_size = Vector2(80, 40)
+layout_mode = 2
+offset_left = 376.0
+offset_top = -5.0
+offset_right = 456.0
+offset_bottom = 35.0
+placeholder_text = "0"
+
+[node name="LabelX" type="Label" parent="LabelScale"]
+layout_mode = 0
+offset_left = 94.0
+offset_top = 2.0
+offset_right = 134.0
+offset_bottom = 28.0
+text = "X"
+
+[node name="LabelY" type="Label" parent="LabelScale"]
+layout_mode = 0
+offset_left = 226.0
+offset_top = 2.0
+offset_right = 266.0
+offset_bottom = 28.0
+text = "Y"
+
+[node name="LabelZ" type="Label" parent="LabelScale"]
+layout_mode = 0
+offset_left = 356.0
+offset_top = 2.0
+offset_right = 396.0
+offset_bottom = 28.0
+text = "Z"
+
+[connection signal="text_changed" from="LabelScale/ScaleX" to="." method="_on_scale_x_text_changed"]
+[connection signal="text_changed" from="LabelScale/ScaleY" to="." method="_on_scale_y_text_changed"]
+[connection signal="text_changed" from="LabelScale/ScaleZ" to="." method="_on_scale_z_text_changed"]
