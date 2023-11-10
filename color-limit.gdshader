@@ -3,10 +3,12 @@ render_mode blend_mix;
 // filter_nearest so you don't get weird ghost palette colors!!
 uniform sampler2D palette: filter_nearest;
 uniform sampler2D screen_texture : hint_screen_texture, repeat_disable, filter_nearest;
+uniform float alpha_thresh= 0.1;
 
 void fragment()
 {
     vec3 source_col = texture(screen_texture, SCREEN_UV).rgb;
+    float alph = texture(screen_texture, SCREEN_UV).a;
     vec3 closest_col = vec3(0.0);
     float smallest_error = 10.0;
 
@@ -22,6 +24,12 @@ void fragment()
             smallest_error = error;
         }
     }
-
+	if (alph >= alpha_thresh){
+		alph = 1.0;	
+	}
+	else {
+		alph = 0.0;
+	}
     COLOR.rgb = closest_col;
+    COLOR.a = alph;
 }
