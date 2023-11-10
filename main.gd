@@ -26,6 +26,9 @@ func _ready():
 	
 	player_transform = player_canvas.get_node("Viewport/Player")
 	player_position = player_canvas.get_node("Viewport/Player")
+
+	var c = Callable(self,"file_drop_path")
+	get_tree().connect('files_dropped',c)
 	
 
 func _on_background_shader_toggled(button_pressed):
@@ -56,7 +59,8 @@ func _on_model_load_triggered(path):
 	player_node.name = "Player"
 
 
-
+func file_drop_path(files, screen):
+	_on_model_load_triggered(files[0])
 
 
 func _on_position_transform_changed(_transform):
