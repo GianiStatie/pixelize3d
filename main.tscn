@@ -20,6 +20,9 @@ size_flags_vertical = 3
 script = ExtResource("1_kmhnd")
 player_canvas_path = NodePath("Mount/MarginContainer/MainWindow/HSplitContainer/VSplitContainer/PanelContainer/PlayerCanvas")
 file_button_path = NodePath("Mount/MarginContainer/MainWindow/MenuBar/FileButton")
+position_ui_path = NodePath("Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Position")
+rotation_ui_path = NodePath("Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Rotation")
+scale_ui_path = NodePath("Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Scale")
 
 [node name="Mount" type="PanelContainer" parent="."]
 layout_mode = 1
