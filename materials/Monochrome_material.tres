@@ -1,0 +1,38 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bxtv1l840nfpv"]
+
+[sub_resource type="Shader" id="Shader_v7tjv"]
+code = "shader_type canvas_item;
+
+uniform sampler2D view : repeat_disable, filter_nearest;
+uniform float limit = 1.0;
+uniform float thresh = 0.1;
+
+void fragment(){
+	float offset = 0.0;
+	 vec4 scr = texture(view,UV);
+	if (scr.r >= 0.01 && scr.g >= 0.01 && scr.b >= 0.01){
+		scr.rgb = vec3(1.0);
+	}
+	else {
+		scr.rgb = vec3(0.0);
+	}
+	float alpha = scr.a;
+	if (alpha < thresh){
+		alpha = 0.0;
+	}
+	else {
+		alpha = 1.0;
+	}
+	
+	
+	
+	COLOR.rgb = scr.rgb;
+	COLOR.a = alpha;
+}"
+metadata/_edit_res_path = "res://materials/Monochrome_material.tres::Shader_v7tjv"
+
+[resource]
+resource_local_to_scene = true
+shader = SubResource("Shader_v7tjv")
+shader_parameter/limit = 32.0
+shader_parameter/thresh = 0.5

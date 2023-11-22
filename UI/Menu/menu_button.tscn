@@ -5,19 +5,22 @@
 [node name="MenuButton" type="MenuButton"]
 size_flags_horizontal = 0
 text = "File"
-item_count = 1
+item_count = 2
 popup/item_0/text = "Load Model"
 popup/item_0/id = 0
+popup/item_1/text = "Open directory"
+popup/item_1/id = 1
 script = ExtResource("1_o3wpi")
 
-[node name="LoadModelFileDialog" type="FileDialog" parent="."]
-title = "Open a File"
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a Directory"
 initial_position = 2
-size = Vector2i(392, 300)
-ok_button_text = "Open"
-file_mode = 0
+size = Vector2i(454, 300)
+ok_button_text = "Select Current Folder"
+file_mode = 2
 access = 2
 filters = PackedStringArray("*.glb")
 show_hidden_files = true
 
-[connection signal="file_selected" from="LoadModelFileDialog" to="." method="_on_load_model_file_dialog_file_selected"]
+[connection signal="dir_selected" from="FileDialog" to="." method="_on_load_model_file_dialog_dir_selected"]
+[connection signal="file_selected" from="FileDialog" to="." method="_on_load_model_file_dialog_file_selected"]

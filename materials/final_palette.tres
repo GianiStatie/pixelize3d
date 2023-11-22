@@ -1,0 +1,62 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://cuoco475c4pl"]
+
+[sub_resource type="Shader" id="Shader_ovm27"]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+// filter_nearest so you don't get weird ghost palette colors!!
+uniform sampler2D palette: filter_nearest;
+uniform sampler2D screen_texture : repeat_disable, filter_nearest;
+uniform float alpha_thresh= 0.1;
+
+void fragment()
+{
+    vec3 source_col = texture(screen_texture, SCREEN_UV).rgb;
+    float alph = texture(screen_texture, SCREEN_UV).a;
+    vec3 closest_col = vec3(0.0);
+    float smallest_error = 10.0;
+
+    int palette_size = textureSize(palette, 0).x;
+    float palette_pixel_size = 1.0 / float(palette_size);
+    for (int x = 0; x < palette_size; x++)
+    {
+        vec3 palette_col = texture(palette, vec2(float(x) * palette_pixel_size, 0.0)).rgb;
+        float error = distance(source_col, palette_col);
+        if (error < smallest_error)
+        {
+            closest_col = palette_col;
+            smallest_error = error;
+        }
+    }
+	if (alph >= alpha_thresh){
+		alph = 1.0;
+	}
+	else {
+		alph = 0.0;
+	}
+    COLOR.rgb = closest_col;
+    COLOR.a = alph;
+}
+"
+metadata/_edit_res_path = "res://materials/final_palette.tres::Shader_ovm27"
+
+[sub_resource type="Image" id="Image_td8bv"]
+data = {
+"data": PackedByteArray(0, 0, 0, 131, 131, 139, 222, 230, 238, 255, 255, 255, 123, 65, 65, 131, 90, 90, 156, 115, 115, 164, 164, 164, 189, 189, 189, 213, 213, 213, 197, 65, 65, 255, 98, 90, 222, 106, 98, 106, 90, 90, 164, 98, 90, 189, 148, 139, 222, 180, 164, 238, 213, 205, 238, 148, 115, 222, 148, 115, 255, 189, 131, 255, 197, 148, 255, 213, 180, 65, 57, 49, 205, 156, 82, 255, 197, 90, 189, 156, 90, 213, 180, 106, 189, 189, 131, 222, 205, 131, 238, 230, 164, 57, 82, 0, 57, 139, 49, 131, 197, 98, 180, 255, 131, 24, 164, 106, 65, 180, 131, 115, 197, 164, 164, 213, 197, 82, 139, 197, 98, 172, 238, 115, 189, 246, 16, 32, 57, 24, 41, 82, 41, 57, 98, 74, 115, 172, 98, 164, 222, 41, 49, 90, 57, 74, 123, 156, 180, 222, 189, 205, 230, 65, 74, 106, 98, 98, 123, 65, 49, 65, 98, 65, 82, 205, 65, 82),
+"format": "RGB8",
+"height": 1,
+"mipmaps": false,
+"width": 56
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_750vi"]
+image = SubResource("Image_td8bv")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_naqkc"]
+viewport_path = NodePath("Mount/MarginContainer/MainWindow/HSplitContainer/VSplitContainer/PanelContainer/Renderscene/first_render/Viewport")
+
+[resource]
+resource_local_to_scene = true
+shader = SubResource("Shader_ovm27")
+shader_parameter/alpha_thresh = 0.5
+shader_parameter/palette = SubResource("ImageTexture_750vi")
+shader_parameter/screen_texture = SubResource("ViewportTexture_naqkc")

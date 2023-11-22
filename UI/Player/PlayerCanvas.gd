@@ -3,11 +3,11 @@ extends SubViewportContainer
 var fps: int = 16
 var frames_per_row: int = 10
 
+@onready var after_viewport = $"../SubViewportContainer/after"
 @onready var player_viewport = $Viewport
 
 func get_all_animation_frames():
-	var animation_player = player_viewport.get_node("Player/AnimationPlayer")
-	
+	var animation_player = player_viewport.find_child("AnimationPlayer")
 	var img_buffer = []
 	for anim in animation_player.get_animation_list():
 		animation_player.assigned_animation = anim
@@ -48,6 +48,6 @@ func concatenate_images(buffer):
 	return concat_img
 
 func capture_viewport():
-	var img = player_viewport.get_texture().get_image()
+	var img = after_viewport.get_texture().get_image()
 	img.convert(Image.FORMAT_RGBA8)
 	return img

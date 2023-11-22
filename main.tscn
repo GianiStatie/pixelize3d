@@ -1,9 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://7cj62niu6y0m"]
+[gd_scene load_steps=16 format=3 uid="uid://7cj62niu6y0m"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_kmhnd"]
 [ext_resource type="PackedScene" uid="uid://cq03c8lxhl22t" path="res://UI/Menu/menu_button.tscn" id="2_1xgvu"]
-[ext_resource type="PackedScene" uid="uid://drvvnirtyvu6g" path="res://UI/Player/PlayerCanvas.tscn" id="3_fhkfp"]
+[ext_resource type="Script" path="res://UI/Player/RenderCanvas.gd" id="3_3p1yt"]
 [ext_resource type="PackedScene" uid="uid://c66khec1ryedj" path="res://InputTransform.tscn" id="4_43vby"]
+[ext_resource type="PackedScene" uid="uid://bk6kchpbd5gk3" path="res://Scenes/player.tscn" id="5_8pnex"]
+[ext_resource type="PackedScene" uid="uid://bcqikq1wfgete" path="res://UI/Menu/material_controller.tscn" id="5_46gs8"]
+[ext_resource type="Script" path="res://ColorShader.gd" id="6_5x4h5"]
+[ext_resource type="Material" uid="uid://b13lqyfyyffyj" path="res://materials/final_Mono.tres" id="7_4jwf4"]
+[ext_resource type="Material" uid="uid://ba14cyrfsfjxj" path="res://materials/final_no_palette.tres" id="8_o1sgo"]
+[ext_resource type="Material" uid="uid://bcwgcxdp2nt3r" path="res://materials/normal_material.tres" id="9_537xl"]
+[ext_resource type="Material" uid="uid://cuoco475c4pl" path="res://materials/final_palette.tres" id="9_j15ki"]
+[ext_resource type="Script" path="res://render mode.gd" id="11_clve7"]
+[ext_resource type="Script" path="res://MenuButton.gd" id="12_rfjv1"]
+
+[sub_resource type="Environment" id="Environment_ilbuc"]
+background_mode = 1
+background_color = Color(0, 0.960784, 0.819608, 1)
+ambient_light_source = 1
+ambient_light_color = Color(1, 1, 1, 1)
+reflected_light_source = 1
 
 [sub_resource type="Theme" id="Theme_xym6h"]
 CheckButton/font_sizes/font_size = 8
@@ -18,7 +34,7 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_kmhnd")
-player_canvas_path = NodePath("Mount/MarginContainer/MainWindow/HSplitContainer/VSplitContainer/PanelContainer/PlayerCanvas")
+player_canvas_path = NodePath("Mount/MarginContainer/MainWindow/HSplitContainer/VSplitContainer/PanelContainer/Renderscene")
 file_button_path = NodePath("Mount/MarginContainer/MainWindow/MenuBar/FileButton")
 position_ui_path = NodePath("Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Position")
 rotation_ui_path = NodePath("Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Rotation")
@@ -60,13 +76,63 @@ custom_minimum_size = Vector2(600, 450)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PlayerCanvas" parent="Mount/MarginContainer/MainWindow/HSplitContainer/VSplitContainer/PanelContainer" instance=ExtResource("3_fhkfp")]
-custom_minimum_size = Vector2(400, 400)
+[node name="Renderscene" type="Control" parent="Mount/MarginContainer/MainWindow/HSplitContainer/VSplitContainer/PanelContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-stretch = true
-stretch_shrink = 2
+script = ExtResource("3_3p1yt")
+fps = 5
+
+[node name="first_render" type="SubViewportContainer" parent="Mount/MarginContainer/MainWindow/HSplitContainer/VSplitContainer/PanelContainer/Renderscene"]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 512.0
+
+[node name="Viewport" type="SubViewport" parent="Mount/MarginContainer/MainWindow/HSplitContainer/VSplitContainer/PanelContainer/Renderscene/first_render"]
+own_world_3d = true
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Player" parent="Mount/MarginContainer/MainWindow/HSplitContainer/VSplitContainer/PanelContainer/Renderscene/first_render/Viewport" instance=ExtResource("5_8pnex")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, 0, 0, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Mount/MarginContainer/MainWindow/HSplitContainer/VSplitContainer/PanelContainer/Renderscene/first_render/Viewport"]
+transform = Transform3D(0.5, -0.75, 0.433013, 0, 0.5, 0.866025, -0.866025, -0.433013, 0.25, 0, 0, 0.857771)
+
+[node name="Camera3D" type="Camera3D" parent="Mount/MarginContainer/MainWindow/HSplitContainer/VSplitContainer/PanelContainer/Renderscene/first_render/Viewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 10)
+projection = 1
+size = 2.0
+near = 0.001
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Mount/MarginContainer/MainWindow/HSplitContainer/VSplitContainer/PanelContainer/Renderscene/first_render"]
+environment = SubResource("Environment_ilbuc")
+
+[node name="after_effect" type="SubViewportContainer" parent="Mount/MarginContainer/MainWindow/HSplitContainer/VSplitContainer/PanelContainer/Renderscene"]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 512.0
+
+[node name="after_viewport" type="SubViewport" parent="Mount/MarginContainer/MainWindow/HSplitContainer/VSplitContainer/PanelContainer/Renderscene/after_effect"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="ColorShader" type="ColorRect" parent="Mount/MarginContainer/MainWindow/HSplitContainer/VSplitContainer/PanelContainer/Renderscene/after_effect/after_viewport"]
+material = ExtResource("9_j15ki")
+custom_minimum_size = Vector2(512, 512)
+offset_right = 512.0
+offset_bottom = 512.0
+script = ExtResource("6_5x4h5")
+mono = ExtResource("7_4jwf4")
+no_palette = ExtResource("8_o1sgo")
+palette = ExtResource("9_j15ki")
+normal = ExtResource("9_537xl")
+
+[node name="Camera2D" type="Camera2D" parent="Mount/MarginContainer/MainWindow/HSplitContainer/VSplitContainer/PanelContainer/Renderscene/after_effect/after_viewport"]
+anchor_mode = 0
+
+[node name="palette" type="Sprite2D" parent="Mount/MarginContainer/MainWindow/HSplitContainer/VSplitContainer/PanelContainer/Renderscene"]
+position = Vector2(11, 502)
 
 [node name="FrameSizeLabel" type="Label" parent="Mount/MarginContainer/MainWindow/HSplitContainer/VSplitContainer/PanelContainer"]
 layout_mode = 2
@@ -117,6 +183,35 @@ transformName = "Scale"
 [node name="HSeparator" type="HSeparator" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 
+[node name="material_conntroller" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer" instance=ExtResource("5_46gs8")]
+layout_mode = 2
+player_path = NodePath("../../../VSplitContainer/PanelContainer/Renderscene")
+
+[node name="HSeparator2" type="HSeparator" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="render mode" type="MenuButton" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Render Mode"
+flat = false
+item_count = 3
+popup/item_0/text = "seperate Animations"
+popup/item_0/id = 0
+popup/item_1/text = "All as a Spritesheet"
+popup/item_1/id = 1
+popup/item_2/text = "Eight directions"
+popup/item_2/id = 2
+script = ExtResource("11_clve7")
+
+[node name="Label" type="Label" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/render mode"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 3.0
+offset_right = 161.0
+offset_bottom = 26.0
+text = "Seperate Animations"
+
 [node name="PostProcessingLabel" type="Label" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "Post-processing"
@@ -155,8 +250,34 @@ auto_translate = false
 action_mode = 0
 text = "PlayAnimation"
 
+[node name="PopupMenu" type="PopupMenu" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer"]
+
+[node name="MenuButton" type="MenuButton" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "File"
+item_count = 2
+popup/item_0/text = "Load Model"
+popup/item_0/id = 0
+popup/item_1/text = "Open directory"
+popup/item_1/id = 1
+script = ExtResource("12_rfjv1")
+
+[node name="FileDialog" type="FileDialog" parent="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/MenuButton"]
+title = "Open a Directory"
+initial_position = 2
+size = Vector2i(454, 300)
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+filters = PackedStringArray("*.glb")
+show_hidden_files = true
+
+[connection signal="path_update" from="." to="." method="_on_path_update"]
 [connection signal="transformChanged" from="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Position" to="." method="_on_position_transform_changed"]
 [connection signal="transformChanged" from="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Rotation" to="." method="_on_rotation_transform_changed"]
 [connection signal="transformChanged" from="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Scale" to="." method="_on_scale_transform_changed"]
 [connection signal="toggled" from="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/ColorShader/BackgroundShader" to="." method="_on_background_shader_toggled"]
 [connection signal="button_down" from="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/PlayAnimation" to="." method="_on_run_annimation_button_down"]
+[connection signal="dir_selected" from="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/MenuButton/FileDialog" to="." method="_on_file_dialog_dir_selected"]
+[connection signal="file_selected" from="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/MenuButton/FileDialog" to="Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/MenuButton" method="_on_load_model_file_dialog_file_selected"]
