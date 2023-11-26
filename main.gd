@@ -7,13 +7,11 @@ var dir = ''
 @export var position_ui_path: NodePath
 @export var rotation_ui_path: NodePath
 @export var scale_ui_path: NodePath
-
-
-@onready var menu_button = $Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/MenuButton
+@export var menu_button_path : NodePath
 
 var player_canvas: Control
 var file_button: MenuButton
-
+var menu_button : MenuButton
 var position_ui: HBoxContainer
 var rotation_ui: HBoxContainer
 var scale_ui: HBoxContainer
@@ -31,6 +29,7 @@ func _ready():
 	position_ui = get_node(position_ui_path)
 	rotation_ui = get_node(rotation_ui_path)
 	scale_ui = get_node(scale_ui_path)
+	menu_button = get_node(menu_button_path)
 	
 	color_shader = player_canvas.find_child("ColorShader")
 	player_node = player_canvas.find_child("Player")
