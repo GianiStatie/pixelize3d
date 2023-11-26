@@ -61,7 +61,6 @@ func capture_current_animation(animation_player):
 	return image_buffer
 
 func concatenate_images(buffer):
-	#print()
 	var frame_size = player_viewport.size
 	var frame_width = frame_size.x
 	var frame_height = frame_size.y
