@@ -2,15 +2,10 @@ extends Control
 
 @export var fps: int = 16
 var frames_per_row: int = 25
-
-
 var state = 'one'
 
 @onready var after_viewport = $after_effect/after_viewport
 @onready var player_viewport = $first_render/Viewport
-
-
-
 
 func get_all_animation_frames():
 	var animation_names : Array
