@@ -41,18 +41,16 @@ func _ready():
 	get_tree().get_root().connect('files_dropped',c)
 	update_player_transform(player_node)
 
-
 func _on_background_shader_toggled(button_pressed):
 	if not button_pressed:
 		color_shader.hide()
 	else:
 		color_shader.show()
 
-
 func _on_run_annimation_button_down():
-	Render()
+	render()
 
-func Render():
+func render():
 	var arr : Array
 	menu_button.file_menu(1)
 	dir = await path_update
