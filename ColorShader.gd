@@ -10,11 +10,9 @@ func _ready():
 	var c = Callable(self,"change_texture")
 	get_tree().get_root().connect('files_dropped',c)
 
-
 func change_texture(files):
 	var path = files[0] as String
 	if path.ends_with(".png"):
-		#$"../../../palette".texture = load_external_tex(path)
 		palette.set_shader_parameter("palette",load_external_tex(path))
 
 func load_external_tex(path):
