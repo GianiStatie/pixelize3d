@@ -39,6 +39,7 @@ file_button_path = NodePath("Mount/MarginContainer/MainWindow/MenuBar/FileButton
 position_ui_path = NodePath("Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Position")
 rotation_ui_path = NodePath("Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Rotation")
 scale_ui_path = NodePath("Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/Scale")
+menu_button_path = NodePath("Mount/MarginContainer/MainWindow/HSplitContainer/PanelContainer/VBoxContainer/MenuButton")
 
 [node name="Mount" type="PanelContainer" parent="."]
 layout_mode = 1
