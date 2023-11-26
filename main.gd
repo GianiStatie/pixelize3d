@@ -64,6 +64,7 @@ func render():
 		img = images[i]
 		var path = dir + anime_names[i] + ".png"
 		img.save_png(path)
+
 func _on_model_load_triggered(path : String):
 	if path.ends_with(".gltf") or path.ends_with(".glb"):
 		var state = GLTFState.new()
@@ -75,7 +76,6 @@ func _on_model_load_triggered(path : String):
 		
 		var node_parent = player_node.get_parent()
 		player_node.queue_free()
-		#await player_node.tree_exited
 		
 		node_parent.add_child(node)
 		node.set_owner(node_parent)
