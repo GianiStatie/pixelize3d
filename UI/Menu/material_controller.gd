@@ -11,12 +11,6 @@ extends Control
 
 func _ready():
 	var player_scene = get_node(player_path)
-	pass
-
-
-
-
-
 
 func _on_mono_chrome_button_up():
 	color_shader.material = color_shader.mono
@@ -29,7 +23,7 @@ func _on_color_palette_button_up():
 
 
 func _on_color_limit_button_up():
-	color_shader.material = color_shader.palette
+	color_shader.material = color_shader.no_palette
 	viewport.debug_draw = 0
 
 
