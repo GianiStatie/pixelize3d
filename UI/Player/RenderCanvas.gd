@@ -64,8 +64,6 @@ func concatenate_images(buffer):
 	var frame_size = player_viewport.size
 	var frame_width = frame_size.x
 	var frame_height = frame_size.y
-	
-	#var nb_of_rows = ceil(len(buffer) / float(frames_per_row))
 	var nb_of_rows = int(pow(len(buffer),0.5)) + 1
 	frames_per_row = nb_of_rows
 	var concat_img = Image.create(frame_width * frames_per_row, frame_height * nb_of_rows, false, Image.FORMAT_RGBA8)
