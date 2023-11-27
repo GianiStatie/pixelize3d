@@ -58,6 +58,6 @@ offset_right = 396.0
 offset_bottom = 28.0
 text = "Z"
 
-[connection signal="text_changed" from="LabelScale/ScaleX" to="." method="_on_scale_x_text_changed"]
-[connection signal="text_changed" from="LabelScale/ScaleY" to="." method="_on_scale_y_text_changed"]
-[connection signal="text_changed" from="LabelScale/ScaleZ" to="." method="_on_scale_z_text_changed"]
+[connection signal="text_submitted" from="LabelScale/ScaleX" to="." method="_on_scale_x_text_submitted"]
+[connection signal="text_submitted" from="LabelScale/ScaleY" to="." method="_on_scale_y_text_submitted"]
+[connection signal="text_submitted" from="LabelScale/ScaleZ" to="." method="_on_scale_z_text_submitted"]
