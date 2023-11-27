@@ -1,4 +1,4 @@
-extends HBoxContainer
+extends Control
 
 signal transformChanged(_transform)
 @export var transformName:String = "undefined"
@@ -12,18 +12,6 @@ var transform = Vector3.ZERO : set = _set_transform, get = _get_transform
 func _ready():
 	labelName.text = transformName
 
-func _on_scale_x_text_changed():
-	transform.x = float(transformX.text)
-	emit_signal("transformChanged",transform)
-
-func _on_scale_y_text_changed():
-	transform.y = float(transformY.text)
-	emit_signal("transformChanged",transform)
-
-func _on_scale_z_text_changed():
-	transform.z = float(transformZ.text)
-	emit_signal("transformChanged",transform)
-
 func _set_transform(value):
 	transform = value
 	transformX.text = str(value.x)
@@ -32,3 +20,18 @@ func _set_transform(value):
 
 func _get_transform():
 	return transform
+
+func _on_scale_x_text_submitted(new_text):
+	transform.x = float(new_text)
+	transformX.text = new_text
+	emit_signal("transformChanged",transform)
+
+func _on_scale_y_text_submitted(new_text):
+	transform.y = float(new_text)
+	transformY.text = new_text
+	emit_signal("transformChanged",transform)
+
+func _on_scale_z_text_submitted(new_text):
+	transform.z = float(new_text)
+	transformZ.text = new_text
+	emit_signal("transformChanged",transform)

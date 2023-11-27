@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://bcqikq1wfgete"]
+
+[ext_resource type="Script" path="res://UI/Menu/material_controller.gd" id="1_poxsr"]
+
+[node name="material_conntroller" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_poxsr")
+
+[node name="Mono chrome" type="Button" parent="."]
+layout_mode = 2
+offset_right = 116.0
+offset_bottom = 40.0
+text = "Mono chrome"
+
+[node name="Color palette" type="Button" parent="."]
+layout_mode = 2
+offset_left = 120.0
+offset_right = 231.0
+offset_bottom = 40.0
+text = "Color_palette"
+
+[node name="Color limit" type="Button" parent="."]
+layout_mode = 2
+offset_left = 235.0
+offset_right = 324.0
+offset_bottom = 40.0
+text = "Color limit"
+
+[node name="normal render" type="Button" parent="."]
+layout_mode = 2
+offset_left = 328.0
+offset_right = 451.0
+offset_bottom = 40.0
+text = "Normal render"
+
+[connection signal="button_up" from="Mono chrome" to="." method="_on_mono_chrome_button_up"]
+[connection signal="button_up" from="Color palette" to="." method="_on_color_palette_button_up"]
+[connection signal="button_up" from="Color limit" to="." method="_on_color_limit_button_up"]
+[connection signal="button_up" from="normal render" to="." method="_on_normal_render_button_up"]

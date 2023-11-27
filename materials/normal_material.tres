@@ -1,0 +1,30 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://bcwgcxdp2nt3r"]
+
+[sub_resource type="Shader" id="Shader_ia18y"]
+code = "shader_type canvas_item;
+
+uniform sampler2D view : repeat_disable, filter_nearest;
+uniform float thresh = 0.1;
+
+void fragment(){
+	vec4 scr = texture(view,UV);
+	float alpha = scr.a;
+	if (alpha < thresh){
+		alpha = 0.0;
+	}
+	else {
+		alpha = 1.0;
+	}
+	COLOR.rgb = scr.rgb;
+	COLOR.a = alpha;
+}"
+metadata/_edit_res_path = "res://materials/normal_material.tres::Shader_ia18y"
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_d5yyi"]
+viewport_path = NodePath("Mount/MarginContainer/MainWindow/HSplitContainer/VSplitContainer/PanelContainer/Renderscene/first_render/Viewport")
+
+[resource]
+resource_local_to_scene = true
+shader = SubResource("Shader_ia18y")
+shader_parameter/thresh = 0.5
+shader_parameter/view = SubResource("ViewportTexture_d5yyi")

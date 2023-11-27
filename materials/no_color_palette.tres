@@ -1,0 +1,39 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://1j6gjnwy104k"]
+
+[sub_resource type="Shader" id="Shader_4u2f0"]
+code = "shader_type canvas_item;
+
+uniform sampler2D view : repeat_disable, filter_nearest;
+uniform float limit = 32.0;
+uniform float thresh = 0.5;
+
+void fragment(){
+	float offset = 0.5/limit;
+	 vec4 scr = texture(view,UV);
+	scr.r = float(int(scr.r*limit+offset))/limit;
+	scr.b = float(int(scr.b*limit+offset))/limit;
+	scr.g = float(int(scr.g*limit+offset))/limit;
+	float alpha = scr.a;
+	if (alpha < thresh){
+		alpha = 0.0;
+	}
+	else {
+		alpha = 1.0;
+	}
+	
+	
+	
+	COLOR.rgb = scr.rgb;
+	COLOR.a = alpha;
+}"
+metadata/_edit_res_path = "res://main.tscn::Shader_4u2f0"
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_iv6ru"]
+viewport_path = NodePath("Mount/MarginContainer/MainWindow/HSplitContainer/VSplitContainer/PanelContainer/PlayerCanvas/first_render/Viewport")
+
+[resource]
+resource_local_to_scene = true
+shader = SubResource("Shader_4u2f0")
+shader_parameter/limit = 32.0
+shader_parameter/thresh = 0.5
+shader_parameter/view = SubResource("ViewportTexture_iv6ru")
